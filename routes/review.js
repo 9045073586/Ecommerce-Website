@@ -31,6 +31,7 @@ router.post('/products/:id/review',isLoggedIn, validateReviews, async (req, res)
         res.redirect(`/products/${id}`);
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -59,6 +60,7 @@ router.post('/products/:reviewId/review/delete', isLoggedIn, async (req, res) =>
         res.render('products/show', {foundProduct , user, msg: req.flash('msg')});
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })

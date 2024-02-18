@@ -8,6 +8,7 @@ router.get('/register', (req, res) => {
     res.render('auth/signup');
   }
   catch(e){
+    console.log(e);
     res.render('error', {err:e.message})
   }
 })
@@ -20,6 +21,7 @@ router.post('/register', async (req, res) => {
     res.render('auth/login');
   }
   catch(e){
+    console.log(e);
     res.render('error', {err:e.message})
   }
 })
@@ -29,6 +31,7 @@ router.get('/login', (req, res) => {
     res.render('auth/login');
   }
   catch(e){
+    console.log(e);
     res.render('error', {err:e.message})
   }
 })
@@ -54,6 +57,7 @@ router.get('/logout', function(req, res, next){
     );
   }
   catch(e){
+    console.log(e);
     res.render('error', {err:e.message})
   }
 });

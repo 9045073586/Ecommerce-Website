@@ -18,6 +18,7 @@ router.post('/products/:productId/like', isLoggedIn, async (req, res) => {
         res.status(201).send('ok');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })

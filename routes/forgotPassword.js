@@ -9,6 +9,7 @@ router.get('/forgot', (req, res) => {
         res.render('resetPassword/forgot')
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -70,6 +71,7 @@ router.post('/forgot', async (req, res) => {
         res.redirect('/products');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 });
@@ -80,6 +82,7 @@ router.get('/reset/:token', (req, res) => {
         res.render('resetPassword/reset', {token});
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -116,6 +119,7 @@ router.post('/reset/:token', async (req, res) => {
         res.render('auth/login');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })

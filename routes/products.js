@@ -16,6 +16,7 @@ router.get('/products', async (req, res) => {
         res.render('products/index', {products});
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
     
@@ -27,6 +28,7 @@ router.get('/products/new', isLoggedIn, isSeller, (req, res) => {
         res.render('products/new');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -42,6 +44,7 @@ router.post('/products', isLoggedIn, isSeller, validateProducts, async (req, res
         res.redirect('/products');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -57,6 +60,7 @@ router.get('/products/:id', isLoggedIn, async (req, res) => {
         res.render('products/show', {foundProduct , user, msg: req.flash('msg')});
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -69,6 +73,7 @@ router.get('/products/:id/edit', isLoggedIn, isSeller, isProductAuthor, async (r
         res.render('products/edit', {foundProduct});
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -84,6 +89,7 @@ router.patch('/products/:id', isLoggedIn, isSeller, isProductAuthor, validatePro
         res.redirect('/products');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -108,6 +114,7 @@ router.delete('/products/:productId', isLoggedIn, isSeller, isProductAuthor, asy
         res.redirect('/products')
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })

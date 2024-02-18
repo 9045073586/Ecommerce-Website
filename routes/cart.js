@@ -20,6 +20,7 @@ router.post('/user/:productId/cart', isLoggedIn, async (req, res) => {
         res.redirect('/user/cart');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -40,6 +41,7 @@ router.get('/user/cart', isLoggedIn, async (req, res) => {
         res.render('cart/cart', {user});
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -56,6 +58,7 @@ router.post('/user/:productId/cart/remove', isLoggedIn, async(req, res) => {
         res.redirect('/user/cart');
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -96,6 +99,7 @@ router.get('/user/checkout', isLoggedIn, async(req, res) => {
           res.redirect(303, session.url);
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
 })
@@ -107,6 +111,7 @@ router.get('/user/cart/success', isLoggedIn, async(req, res) => {
         await user.save();
     }
     catch(e){
+        console.log(e);
         res.render('error', {err:e.message})
     }
     

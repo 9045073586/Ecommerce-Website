@@ -20,8 +20,9 @@ const productApi = require('./routes/api/productApi')
 const wishlist = require('./routes/wishlist')
 const dotenv = require('dotenv').config()
 
-let url = 'mongodb+srv://rahulchaudhary777:rahul@cluster0.dsmpl38.mongodb.net/ecommerceretryWrites=true&w=majority'
-// let url = process.env.MONGO_URL
+// let url = 'mongodb+srv://rahulchaudhary777:rahul@cluster0.dsmpl38.mongodb.net/ecommerceretryWrites=true&w=majority'
+let url = process.env.MONGO_URL
+console.log(process.env.MONGO_URL)
 // let url = 'mongodb://127.0.0.1:27017/ecommerceDB'
 mongoose.connect(url)
 .then(() => { console.log("database created"); })
