@@ -53,7 +53,7 @@ const isSeller = (req, res, next) => {
 const isProductAuthor = async (req, res, next) => {
     let { productId } = req.params;
     let product = await Products.findById(productId);
-    // console.log(product.author);
+    console.log(product);
     // console.log(req.user._id);
     
     if(!product.author || !product.author.equals( req.user._id )){

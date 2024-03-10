@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
 const seedDB = require('./seed');
-// const methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session)
 const flash = require('connect-flash');
@@ -22,7 +22,7 @@ const dotenv = require('dotenv').config()
 
 // let url = 'mongodb+srv://rahulchaudhary777:rahul@cluster0.dsmpl38.mongodb.net/ecommerceretryWrites=true&w=majority'
 let url = process.env.MONGO_URL
-console.log(process.env.MONGO_URL)
+// console.log(process.env.MONGO_URL)
 // let url = 'mongodb://127.0.0.1:27017/ecommerceDB'
 mongoose.connect(url)
 .then(() => { console.log("database created"); })
@@ -34,7 +34,7 @@ app.set('views', path.join(__dirname, '/views'));
 
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(express.urlencoded({extended: false}))
-// app.use(methodOverride('_method'))
+app.use(methodOverride('_method'))
 
 let configSession = {
     secret: 'keyboard cat',
@@ -91,7 +91,7 @@ app.use(wishlist);
 
 // seedDB();
 
-app.listen(process.env.port, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("server connected");
 })
 

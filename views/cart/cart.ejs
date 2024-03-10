@@ -3,27 +3,32 @@
 <%-include('../partials/flash')%>
 
 <div class="row mt-5">
-    <% for(let item of user.cart){ %>
+    <% for(let cartItem of user.cart){ %>
 
         <div class="col-lg-4 product-card">
             <div class="card text-center shadow mt-3 mx-auto" style="width: 18rem;">
-                <img class="img" src="<%=item.img%>" class="card-img-top" alt="...">
+                <img class="img" src="<%=cartItem.img%>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h3 class="card-title"> <%= item.name %> </h3>
-                  <h5 class="card-title"> Rs: <%= item.price %> </h5>
-                  <!-- <p class="card-text"> <%= item.instock %> </p> -->
+                  <h3 class="card-title"> <%= cartItem.name %> </h3>
+                  <h5 class="card-title"> Rs: <%= cartItem.price %> </h5>
+                  <!-- <p class="card-text"> <%= cartItem.stock %> </p> -->
                   
                   <!-- quantity dropdown -->
-                  <!-- <p>Quantity </p> -->
-                  <select class="form-select" aria-label="Default select example" style="width: 4rem;">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </select>
-                  <a href="/products/<%=item._id%>" class="btn btnn btn-primary">View Product</a>
+                  <form action="/user/cart/quantity/<%= cartItem._id %>" class="d-inline-block" method="post">
+                    <select class="form-select" name="quantity" aria-label="Default select example" style="width: 4rem;" onchange="this.form.submit()">
+                      <option selected disabled><%= cartItem.quantity %></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </form>
+                  <!-- <a href="/products/<%=cartItem._id%>" class="btn btnn btn-primary">View Product</a> -->
 
                   <!-- remove from cart -->
-                  <form action="/user/<%=item._id%>/cart/remove" class="d-inline-block" method="post">
+                  <form action="/user/<%=cartItem._id%>/cart/remove" class="d-inline-block" method="post">
                     <button type="submit" class="btn btnn btn-primary">Remove</button>
                   </form>
                 </div>
@@ -34,9 +39,10 @@
 <div class="col-lg-4">
   <% let totalAmount = 0; %>
   <ul>
-    <% for(let item of user.cart){ %>
-      <li><span> <%= item.name %> --&gt; &#x20B9; <%= item.price %> </span></li>
-      <% totalAmount = totalAmount + item.price; %>
+    <% for(let cartItem of user.cart){ %>
+      <% let itemAmount = cartItem.price * cartItem.quantity %>
+      <li><span> <%= cartItem.name %> --&gt; &#x20B9; <%= cartItem.price %> * <%= cartItem.quantity %> =&gt; &#x20B9; <%= itemAmount %></span></li>
+      <% totalAmount = totalAmount + itemAmount %>
     <% } %>
 
     <!-- total amount -->

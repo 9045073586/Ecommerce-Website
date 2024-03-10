@@ -33,8 +33,15 @@ const userSchema = new mongoose.Schema({
     cart: [  
         {
             type: mongoose.Schema.Types.ObjectId,
+            ref: 'Cart'
+        }
+    ],
+    // products object-id that store in cart
+    products: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Products'
-        }  
+        }
     ],
     reviews: [
         {

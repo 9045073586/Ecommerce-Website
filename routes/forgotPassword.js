@@ -62,13 +62,15 @@ router.post('/forgot', async (req, res) => {
             transporter.sendMail(mailOptions, (err, response) => {
                 if (err) {
                     console.error('there was an error: ', err);
+                    return res.render('error', {err:err.message})
                 } else {
                     console.log('here is the res: ', response);
                     req.flash('success', 'Recovery email sent');
+                    return res.redirect('/products');
                 }
             });
         }
-        res.redirect('/products');
+        // req.flash('success', 'email sent success')
     }
     catch(e){
         console.log(e);

@@ -13,7 +13,7 @@
                     Looks good!
                 </div>
                 <div id="validationServer03Feedback" class="invalid-feedback">
-                    Please provide a valid city.
+                    Please provide a valid product name.
                 </div>
             </div>
             <div class="mb-3">
@@ -23,7 +23,7 @@
                     Looks good!
                 </div>
                 <div id="validationServer03Feedback" class="invalid-feedback">
-                    Please provide a valid city.
+                    Please provide a valid image.
                 </div>
             </div>
             <div class="mb-3">
@@ -35,7 +35,20 @@
                         Looks good!
                     </div>
                     <div id="validationServer03Feedback" class="invalid-feedback">
-                        Please provide a valid city.
+                        Please provide a valid price.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock: </label>
+                <div class="input-group mb-3">
+                    <input class="form-control" type="number" name="stock" id="stock" placeholder="No. of quantity" value="<%=foundProduct.stock%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        Please provide a valid quantity.
                     </div>
                 </div>
             </div>
@@ -47,7 +60,7 @@
                     Looks good!
                 </div>
                 <div id="validationServer03Feedback" class="invalid-feedback">
-                    Please provide a valid city.
+                    Please provide a valid description.
                 </div>
             </div>
             <button type="submit" class="btn btn-sm btn-success">Save Changes</button>

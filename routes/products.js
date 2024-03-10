@@ -18,8 +18,7 @@ router.get('/products', async (req, res) => {
     catch(e){
         console.log(e);
         res.render('error', {err:e.message})
-    }
-    
+    }  
 })
 
 // new form
@@ -36,9 +35,9 @@ router.get('/products/new', isLoggedIn, isSeller, (req, res) => {
 //actually adding
 router.post('/products', isLoggedIn, isSeller, validateProducts, async (req, res) => {
     try{
-        let {name, img, price, desc} = req.body;
+        let {name, img, price, stock, desc} = req.body;
         let author = req.user._id;
-        await Products.create({name, img, price, desc, author});
+        await Products.create({name, img, price, stock, desc, author});
 
         req.flash('success', 'Product added successfully');
         res.redirect('/products');
@@ -50,10 +49,10 @@ router.post('/products', isLoggedIn, isSeller, validateProducts, async (req, res
 })
 
 //show particular product
-router.get('/products/:id', isLoggedIn, async (req, res) => {
+router.get('/products/:productId', isLoggedIn, async (req, res) => {
     try{
-        let { id } = req.params;        
-        let foundProduct = await Products.findById(id).populate('reviews');
+        let { productId } = req.params;        
+        let foundProduct = await Products.findById(productId).populate('reviews');
 
         let userId = req.user._id;
         let user = await User.findById(userId);
@@ -66,10 +65,10 @@ router.get('/products/:id', isLoggedIn, async (req, res) => {
 })
 
 //show edit form
-router.get('/products/:id/edit', isLoggedIn, isSeller, isProductAuthor, async (req, res) => {
+router.get('/products/:productId/edit', isLoggedIn, isSeller, isProductAuthor, async (req, res) => {
     try{
-        let { id } = req.params;
-        let foundProduct = await Products.findById(id);
+        let { productId } = req.params;
+        let foundProduct = await Products.findById(productId);
         res.render('products/edit', {foundProduct});
     }
     catch(e){
@@ -79,11 +78,11 @@ router.get('/products/:id/edit', isLoggedIn, isSeller, isProductAuthor, async (r
 })
 
 //actully changing the product
-router.patch('/products/:id', isLoggedIn, isSeller, isProductAuthor, validateProducts, async (req, res) => {
+router.patch('/products/:productId', isLoggedIn, isSeller, isProductAuthor, validateProducts, async (req, res) => {
     try{
-        let { id } = req.params;
-        let {name, img, price, desc} = req.body;
-        await Products.findByIdAndUpdate(id, {name, img, price, desc});
+        let { productId } = req.params;
+        let {name, img, price, stock, desc} = req.body;
+        await Products.findByIdAndUpdate(productId, {name, img, price, stock, desc});
 
         req.flash('success', 'Product updated successfully');
         res.redirect('/products');

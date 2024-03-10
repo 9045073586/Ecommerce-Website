@@ -9,14 +9,19 @@
                 <img class="img" src="<%=foundProduct.img%>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h3 class="card-title text-center"> <%= foundProduct.name %> </h3>
-                  <h5 class="card-title"> Rs: <%= foundProduct.price %> </h5>
+                  <h5 class="card-text"> Rs: <%= foundProduct.price %> </h5>
+                  <% if(foundProduct.stock > 0){ %>
+                    <p class="card-text">Quantity: <%= foundProduct.stock %> </p>
+                  <% } else { %>
+                    <p class="cart-text"> Out of stock</p>
+                  <% } %>
                   <p class="card-text"> <%= foundProduct.desc %> </p>
-                  <a href="#" class="btn btn-success">Buy</a>
+                  <!-- <a href="#" class="btn btn-success">Buy</a> -->
 
                   <!-- add to cart -->
                   <form class="d-inline-block" action="/user/<%= foundProduct._id %>/cart" method="post">
                     
-                    <% if(!user.cart.includes(foundProduct._id)){ %>
+                    <% if(!user.products.includes(foundProduct._id) && foundProduct.stock > 0){ %>
                         <button type="submit" class="btn btn-secondary">Add to Cart</button>
                     <% } %>
 

@@ -33,9 +33,12 @@ const productsSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    stock: {
+        type: Number,
+        trim: true,
+        required: true
     }
-    
-
 })
 
 // create model

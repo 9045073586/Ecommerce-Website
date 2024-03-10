@@ -20,8 +20,14 @@
 
                   </span>
                   <h5 class="card-title"> Rs: <%= item.price %> </h5>
+                  
+                  <% if(item.stock > 0){ %>
+                      <p class="card-text">Quantity: <%= item.stock %> </p>
+                  <% } else { %>
+                    <p class="cart-text"> Out of stock</p>
+                  <% } %>
+
                   <p class="card-text"> <%= item.desc %> </p>
-                  <p class="card-text"> <%= item.instock %> </p>
                   <a href="/products/<%=item._id%>" class="btn btnn btn-primary">View Product</a>
                 </div>
             </div>
