@@ -21,9 +21,9 @@ const wishlist = require('./routes/wishlist')
 const dotenv = require('dotenv').config()
 
 // let url = 'mongodb+srv://rahulchaudhary777:rahul@cluster0.dsmpl38.mongodb.net/ecommerceretryWrites=true&w=majority'
-let url = process.env.MONGO_URL
+//let url = process.env.MONGO_URL
 // console.log(process.env.MONGO_URL)
-// let url = 'mongodb://127.0.0.1:27017/ecommerceDB'
+let url = 'mongodb://127.0.0.1:27017/ecommerceDB'
 mongoose.connect(url)
 .then(() => { console.log("database created"); })
 .catch((err) => { console.log(err) });
@@ -89,9 +89,9 @@ app.use(productApi);
 app.use(wishlist);
 
 
-// seedDB();
+/// seedDB();
 
-app.listen(process.env.PORT, ()=>{
+app.listen(8080, ()=>{
     console.log("server connected");
 })
 
